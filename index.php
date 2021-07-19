@@ -15,6 +15,9 @@ if(  !defined('WPINC') ){
     die;
 }
 
+//defin variables
+define('PLUGIN_DIR', dirname(__FILE__));
+
 //Add Movie Custom Post Type
 include_once('includes/post-type-movies.php');
 include_once('includes/metaboxes.php');
@@ -23,6 +26,9 @@ include_once('includes/metaboxes.php');
 require_once('includes/genres.php');
 require_once('includes/keywords.php');
 require_once('includes/filter-movies.php');
+
+//Shortcode
+include_once('includes/shortcodes.php');
 
 
 //Enqueue Scripts and Styling

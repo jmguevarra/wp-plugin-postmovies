@@ -1,3 +1,7 @@
+<?php
+
+echo 'test';
+/*
 <aside data-css-sidebar="sidebar">
   <form data-css-form="filter" data-js-form="filter">
     <h2 data-css-form="title">Filter movies</h2>
@@ -47,4 +51,4 @@
       <input type="hidden" name="action" value="filter">
     </fieldset>
   </form>
-</aside>
+</aside>*/
