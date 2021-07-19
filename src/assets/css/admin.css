@@ -1,0 +1,22 @@
+/**
+ * Add Custom Styling for this plugin
+ * 
+ */
+
+
+ .movie-metaboxes .main-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.movie-metaboxes .field {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(33.33% - 13px);
+    margin: 0 5px;
+}
+.movie-metaboxes .field .single {
+    width: 100%;
+    border-radius: 0;
+    padding: 5px 10px;
+}
