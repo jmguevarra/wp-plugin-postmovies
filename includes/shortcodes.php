@@ -5,18 +5,27 @@
  */
 
 
+//requires
+require_once( PLUGIN_DIR . '/templates/sidebar.php' );
 
- function  displayMovies($atts, $content = null){
+function  displayMovies($atts, $content = null){
+    ob_start();
+
     $attr = shortcode_atts( array(
-        'filter'   =>  'false'
+        'filter'    =>  'false',
+        'searchby'  =>  'all'
     ), $atts);
 
-    ob_start();
+    //Search Fields
+    $cleanedSearchBy = preg_replace('/\s+/', '', $attr['searchby']); //remove white spaces
+    $searchfields = explode( ',', $cleanedSearchBy ); //explode to array
 
     if( $attr['filter'] == 'true'): ?>
         <div class="movies-container movies-filter">
             <div class="movie-filter-card">
-                <?php include_once PLUGIN_DIR . '/templates/sidebar.php'; ?>
+                <?php 
+                   movieSidebar($searchfields);
+                ?>
             </div>
             <div class="movie-cards">
                 <?php include_once PLUGIN_DIR . '/templates/loop.php'; ?>
@@ -25,9 +34,8 @@
     <?php
     else:
         include_once PLUGIN_DIR . '/templates/loop.php';
-      
     endif;
 
     return ob_get_clean();
- }
- add_shortcode('movies', 'displayMovies');
+}
+add_shortcode('movies', 'displayMovies');
