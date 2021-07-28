@@ -5,8 +5,9 @@
  */
 
 
-add_action('admin_enqueue_scripts', 'jmdev_EnqueueScripts');
-function jmdev_EnqueueScripts(){
+/** Admin Scripts */
+add_action('admin_enqueue_scripts', 'jmdev_adminScripts');
+function jmdev_adminScripts(){
 
     global $pagenow;
     //Enqueue Scripts only on the page instead in the whole admin page
@@ -15,9 +16,23 @@ function jmdev_EnqueueScripts(){
     }
 
     //Css
-    wp_enqueue_style('movie-metaboxes-admin', plugins_url('jmdev-postmovies/src/assets/css/admin.css'), array(), '1.0.0', 'all');
+    wp_enqueue_style('movie-metaboxes-admin', plugins_url('jmdev-postmovies\src\assets\css\admin.css'), array(), PLUGIN_VERSION, 'all');
 
     //JS
-    wp_enqueue_script('movie-metaboxes-admin', plugins_url('jmdev-postmovie/src/assets/js/admin.js'), array('jquery'), '1.0.0', true );
+    wp_enqueue_script('movie-metaboxes-admin', plugins_url('jmdev-postmovies\src\assets\js\admin.js'), array('jquery'), PLUGIN_VERSION, true );
 }
 
+/** Front End Scripts */
+add_action('wp_enqueue_scripts', 'jmdev_wpFrontScripts');
+function jmdev_wpFrontScripts(){
+
+    //filter for front end JS
+    wp_register_script('movies-ajax-filter', plugins_url('jmdev-postmovies\src\assets\js\movies-filter.js'), array(), PLUGIN_VERSION, true);
+   
+    //localize the wp-ajax url
+    wp_localize_script( 'movies-ajax-filter' , 'wpAjax', array('ajaxURL' => admin_url('admin-ajax.php')) );
+
+    wp_enqueue_script('movies-ajax-filter');
+
+}
+    

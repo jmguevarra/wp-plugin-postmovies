@@ -17,7 +17,7 @@ function movieSidebar($searchOption = []){
   <div class="movies-sidebar">
     <div class="movie-sidebar-container">
       <h2 class="title">Filter movies</h2>
-      <form class="movie-filter">
+      <form class="movie-filter" action="movie_filtering">
         <?php if( in_array('title', $searchOption) || in_array('all', $searchOption) ): //title filter ?>
           <fieldset data-movie-form="group single-line">
             <label data-movie-form="main-label" for="movie-title">Search by title</label>

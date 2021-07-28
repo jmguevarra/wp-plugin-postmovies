@@ -23,7 +23,7 @@ function  displayMovies($atts, $content = null){
     if( $attr['filter'] == 'true'): ?>
         <div class="movies-container movies-filter">
             <div class="movie-filter-card">
-                <?php 
+                <?php
                    movieSidebar($searchfields);
                 ?>
             </div>

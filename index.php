@@ -17,10 +17,14 @@ if(  !defined('WPINC') ){
 
 //defin variables
 define('PLUGIN_DIR', dirname(__FILE__));
+define('PLUGIN_VERSION', '1.0.0');
 
 //Add Movie Custom Post Type
 include_once('includes/post-type-movies.php');
 include_once('includes/metaboxes.php');
+
+//WP-AJAX
+require_once('includes/wp-ajax-movies.php');
 
 //Added Taxonomies for the movies
 require_once('includes/genres.php');
@@ -30,6 +34,6 @@ require_once('includes/filter-movies.php');
 //Shortcode
 include_once('includes/shortcodes.php');
 
-
 //Enqueue Scripts and Styling
 include_once('includes/enqueue-scripts.php');
+
