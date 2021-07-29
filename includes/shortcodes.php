@@ -7,6 +7,7 @@
 
 //requires
 require_once( PLUGIN_DIR . '/templates/sidebar.php' );
+require_once( PLUGIN_DIR . '/templates/loop.php' );
 
 function  displayMovies($atts, $content = null){
     ob_start();
@@ -28,12 +29,12 @@ function  displayMovies($atts, $content = null){
                 ?>
             </div>
             <div class="movie-cards">
-                <?php include_once PLUGIN_DIR . '/templates/loop.php'; ?>
+                <?php moviesLoopCard(); ?>
             </div>
         </div>
     <?php
     else:
-        include_once PLUGIN_DIR . '/templates/loop.php';
+        moviesLoopCard();
     endif;
 
     return ob_get_clean();

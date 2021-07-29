@@ -4,16 +4,11 @@
  * 
  */
 
-function moviesFiltering(){
-   $title = $_POST["movie-title"];
-   $genre = $_POST["movie-genre"];
-   $keywords = $_POST["movie-keywords"];
-   $order = $_POST["movie-order"];
-   
+require_once( PLUGIN_DIR . '/templates/loop.php' );
 
-   echo $title;
-   echo $genre;
-   echo $order;
+function moviesFiltering(){
+   moviesLoopCard($_POST);
+   
    die();
 }
 
