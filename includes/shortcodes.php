@@ -22,20 +22,25 @@ function  displayMovies($atts, $content = null){
     $searchfields = explode( ',', $cleanedSearchBy ); //explode to array
 
     if( $attr['filter'] == 'true'): ?>
-        <div class="movies-container movies-filter">
-            <div class="movie-filter-card">
-                <?php
-                   movieSidebar($searchfields);
-                ?>
+        <div class="movies">
+            <div class="movies-container filter-container">
+                <div class="movie-filter-card">
+                    <?php
+                    movieSidebar($searchfields);
+                    ?>
+                </div>
+                <div class="movie-cards">
+                    <?php moviesLoopCard(); ?>
+                </div>
             </div>
-            <div class="movie-cards">
+        </div>
+    <?php else: ?>
+        <div class="movies">
+            <div class="movies-container">
                 <?php moviesLoopCard(); ?>
             </div>
         </div>
-    <?php
-    else:
-        moviesLoopCard();
-    endif;
+    <?php endif;
 
     return ob_get_clean();
 }

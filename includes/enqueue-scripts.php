@@ -25,7 +25,9 @@ function jmdev_adminScripts(){
 /** Front End Scripts */
 add_action('wp_enqueue_scripts', 'jmdev_wpFrontScripts');
 function jmdev_wpFrontScripts(){
-
+    //main
+    wp_enqueue_style('movies', plugins_url('jmdev-postmovies\src\assets\css\movies.css'), array(), PLUGIN_VERSION, 'all');
+    
     //filter for front end JS
     wp_register_script('movies-ajax-filter', plugins_url('jmdev-postmovies\src\assets\js\movies-filter.js'), array(), PLUGIN_VERSION, true);
    

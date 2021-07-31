@@ -17,3 +17,31 @@ filterForm.addEventListener('submit', function(e){
         moviesCard.innerHTML = data;
     }); 
 });
+
+
+
+
+const selectTags = document.querySelectorAll('.movie-filter .input-select');
+let selectTagIndex = 0;
+
+for(const elem of selectTags){
+    elem.firstElementChild.classList.add('select-placeholder');
+
+    elem.addEventListener('change', function(){
+        const genreOptions = this.options;
+        let optinsIndex = 0;
+
+        for (const optionElem of genreOptions){
+            if(optinsIndex === 0){
+                optinsIndex++;
+                continue;
+            }
+            
+            optionElem.classList = '';
+            optinsIndex++;
+        }
+    
+        this.options[this.selectedIndex].classList.add('selected')
+    });
+    selectTagIndex++;
+}

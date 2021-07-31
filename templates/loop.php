@@ -38,7 +38,7 @@ function moviesLoopCard($filterOptions = []){
       );
     }
 
-    //search by keywords
+    //keywords
     if( !empty($moviesKeywords) ){
       $args['tax_query'] = array(
         array(
@@ -48,7 +48,44 @@ function moviesLoopCard($filterOptions = []){
         )
       );
     }
+
+    // //search by genre
+    // if( !empty($moviesGenre) && !empty($moviesKeywords) ){
+    //   $args['tax_query'] = array(
+    //     'relation'  => 'OR',
+    //     array(
+    //       'taxonomy'  =>  'genre', //taxonomy unique name
+    //       'field'     =>  'term_id', //field id in database
+    //       'terms'     =>  array($moviesGenre) //it requires terms id and should be in an array
+    //     ),
+    //     array(
+    //       'taxonomy'  =>  'keyword', //taxonomy unique name
+    //       'field'     =>  'term_id', //field id in database
+    //       'terms'     =>   $moviesKeywords //already in arrray
+    //     )
+    //   );
+    // }
+
+    //orderBy
+    if( !empty($moviesOrder) ){
+      $orderParam = '';
+
+      if($moviesOrder == 'Alphabetical'){
+        $orderParam = 'title';
+      }elseif($moviesOrder == 'Popularity'){
+        $orderParam = 'meta_value_num'; //
+        $args['meta_key'] = '__movie-rating'; //metakey from custom metaboxes
+        $args['order'] = 'DESC'; //to start in highs rating
+      }else{
+        $orderParam = 'date';
+      }
+
+      $args['orderby'] = $orderParam;
+    }
+    
   }
+
+  
 
   $query = new WP_Query($args);
   $counter = 0;
@@ -95,7 +132,7 @@ function moviesLoopCard($filterOptions = []){
           <div class="movie-summary">
             <h2 class="title"><span class="number"><?= $counter; ?>. </span><a href="<?= $url;?>"><?= $title; ?></a> <span class="date">(<?= $year; ?>)</span></h2>
             <div class="movie-meta">
-              <span class="rating"><?= $rating; ?></span> 
+              <span class="rating"><?= $rating; ?></span> |
               <span class="runtime"><?= $runtime; ?></span> 
               <div class="categories">
                 <?= $terms; ?>
